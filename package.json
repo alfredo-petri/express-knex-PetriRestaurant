@@ -18,5 +18,9 @@
   "homepage": "https://github.com/alfredo-petri/api-restaurante#readme",
   "dependencies": {
     "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.13",
+    "typescript": "^5.5.4"
   }
 }
