@@ -1,0 +1,19 @@
+{
+  "name": "api-restaurante",
+  "version": "1.0.0",
+  "description": "Api para gerenciar os pedidos das mesas de um restaurante - api rest, express, knex, sqlite",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alfredo-petri/api-restaurante.git"
+  },
+  "author": "Alfredo Augusto Petri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alfredo-petri/api-restaurante/issues"
+  },
+  "homepage": "https://github.com/alfredo-petri/api-restaurante#readme"
+}
