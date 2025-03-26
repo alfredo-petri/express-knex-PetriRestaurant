@@ -1,2 +1,2 @@
 # api-restaurante
-Aplicação web  Api Restaurante - api rest, express, knex, sqlite
+Api para gerenciar os pedidos das mesas de um restaurante - api rest, express, knex, sqlite
