@@ -2,9 +2,14 @@ import { knex } from '@/database/knex'
 import { productSchema } from '@/schemas/products/product-schema'
 import { NextFunction, Request, Response } from 'express'
 class ProductsController {
-    async index(request: Request, response: Response, next: NextFunction) {
+    async list(request: Request, response: Response, next: NextFunction) {
         try {
-            return response.json({ message: 'ok' })
+            const { name } = request.query
+            const products = await knex<ProductsTable>('products')
+                .select('id', 'name', 'price')
+                .whereLike('name', `%${name ?? ''}%`)
+                .orderBy('name')
+            return response.json({ products })
         } catch (error) {
             next(error)
         }
