@@ -3,7 +3,7 @@ import { Knex } from 'knex'
 export default {
     client: 'sqlite3',
     connection: {
-        filename: './db/app.db',
+        filename: './src/database/app.db',
     },
     pool: {
         // eslint-disable-next-line
