@@ -5,7 +5,8 @@
     "main": "server.js",
     "scripts": {
         "dev": "tsx watch src/server.ts",
-        "lint": "eslint src --ext .ts --fix"
+        "lint": "eslint src --ext .ts --fix",
+        "knex": "tsx node_modules/knex/bin/cli.js"
     },
     "repository": {
         "type": "git",
