@@ -19,6 +19,7 @@
     "homepage": "https://github.com/alfredo-petri/api-restaurante#readme",
     "dependencies": {
         "express": "^4.19.2",
+        "knex": "^3.1.0",
         "sqlite3": "^5.1.7"
     },
     "devDependencies": {
