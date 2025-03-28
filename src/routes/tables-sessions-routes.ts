@@ -7,5 +7,6 @@ const tablesSessionsController = new TablesSessionsController()
 
 tablesSessionsRoutes.get('/', tablesSessionsController.list)
 tablesSessionsRoutes.post('/', tablesSessionsController.create)
+tablesSessionsRoutes.patch('/:id', tablesSessionsController.update)
 
 export { tablesSessionsRoutes }
