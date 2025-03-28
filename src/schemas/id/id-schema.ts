@@ -1,6 +1,11 @@
 import z from 'zod'
 
-export const idSchema = z
+export const idParamSchema = z
     .string()
     .transform((value) => Number(value))
     .refine((value) => !isNaN(value), { message: 'id must be a number' })
+
+export const idBodySchema = z.number({
+    required_error: 'id is required',
+    invalid_type_error: 'id must be a number',
+})

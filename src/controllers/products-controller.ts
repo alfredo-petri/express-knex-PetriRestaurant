@@ -1,5 +1,5 @@
 import { knex } from '@/database/knex'
-import { idSchema } from '@/schemas/id/id-schema'
+import { idParamSchema } from '@/schemas/id/id-schema'
 import { createProductSchema } from '@/schemas/products/create-product-schema'
 import { updateProductSchema } from '@/schemas/products/update-product-schema'
 import { AppError } from '@/utils/AppError'
@@ -38,7 +38,7 @@ class ProductsController {
 
     async update(request: Request, response: Response, next: NextFunction) {
         try {
-            const id = idSchema.parse(request.params.id)
+            const id = idParamSchema.parse(request.params.id)
             const { name, price } = updateProductSchema.parse(request.body)
 
             const product = await knex<TProducts>('products')
@@ -62,7 +62,7 @@ class ProductsController {
 
     async delete(request: Request, response: Response, next: NextFunction) {
         try {
-            const id = idSchema.parse(request.params.id)
+            const id = idParamSchema.parse(request.params.id)
 
             const product = await knex<TProducts>('products')
                 .select()
