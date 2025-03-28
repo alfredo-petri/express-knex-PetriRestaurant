@@ -14,9 +14,11 @@ class ProductsController {
                 .whereLike('name', `%${name ?? ''}%`)
                 .orderBy('name')
 
-            const listProduct = products.length ? products : 'product not found'
+            if (!products.length) {
+                throw new AppError('product not found', 404)
+            }
 
-            return response.json({ products: listProduct })
+            return response.json({ products })
         } catch (error) {
             next(error)
         }
