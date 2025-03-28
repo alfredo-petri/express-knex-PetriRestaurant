@@ -1,5 +1,5 @@
 import { knex } from '@/database/knex'
-import { productSchema } from '@/schemas/products/product-schema'
+import { createProductSchema } from '@/schemas/products/create-product-schema'
 import { NextFunction, Request, Response } from 'express'
 class ProductsController {
     async list(request: Request, response: Response, next: NextFunction) {
@@ -17,7 +17,7 @@ class ProductsController {
 
     async create(request: Request, response: Response, next: NextFunction) {
         try {
-            const { name, price } = productSchema.parse(request.body)
+            const { name, price } = createProductSchema.parse(request.body)
 
             await knex<ProductsTable>('products').insert({ name, price })
 
