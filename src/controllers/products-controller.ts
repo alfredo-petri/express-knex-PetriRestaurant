@@ -5,11 +5,15 @@ class ProductsController {
     async list(request: Request, response: Response, next: NextFunction) {
         try {
             const { name } = request.query
+
             const products = await knex<ProductsTable>('products')
                 .select('id', 'name', 'price')
                 .whereLike('name', `%${name ?? ''}%`)
                 .orderBy('name')
-            return response.json({ products })
+
+            const listProduct = products.length ? products : 'product not found'
+
+            return response.json({ products: listProduct })
         } catch (error) {
             next(error)
         }
