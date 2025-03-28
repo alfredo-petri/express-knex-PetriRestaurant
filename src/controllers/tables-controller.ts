@@ -1,12 +1,12 @@
 import { knex } from '@/database/knex'
-import { tableNumberSchema } from '@/schemas/tables/list-products-schema'
+import { idQueryParamSchema } from '@/schemas/id/id-schema'
 import { AppError } from '@/utils/AppError'
 import { Request, Response, NextFunction } from 'express'
 
 class TablesController {
     async list(request: Request, response: Response, next: NextFunction) {
         try {
-            const tableNumber = tableNumberSchema.parse(
+            const tableNumber = idQueryParamSchema.parse(
                 request.query.table_number,
             )
 
