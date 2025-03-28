@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const productSchema = z.object({
+export const createProductSchema = z.object({
     name: z
         .string({
             required_error: 'name value is required',
@@ -20,5 +20,5 @@ export const productSchema = z.object({
         }),
 })
 
-// Tipo inferido automaticamente pelo Zod (opcional)
-export type ProductInput = z.infer<typeof productSchema>
+// Tipo inferido automaticamente pelo Zod
+export type CreateProduct = z.infer<typeof createProductSchema>
