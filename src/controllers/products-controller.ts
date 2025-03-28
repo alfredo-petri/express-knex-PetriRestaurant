@@ -59,6 +59,26 @@ class ProductsController {
             next(error)
         }
     }
+
+    async delete(request: Request, response: Response, next: NextFunction) {
+        try {
+            const id = idSchema.parse(request.params.id)
+
+            const product = await knex<ProductsTable>('products')
+                .select()
+                .where({ id })
+
+            if (!product) {
+                throw new AppError('product not found', 404)
+            }
+
+            await knex<ProductsTable>('products').delete().where({ id })
+
+            return response.json({ message: 'product deleted' })
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 
 export { ProductsController }
