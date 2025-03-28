@@ -1,9 +1,33 @@
 import { knex } from '@/database/knex'
-import { idBodySchema } from '@/schemas/id/id-schema'
+import { idBodySchema, idQueryParamSchema } from '@/schemas/id/id-schema'
 import { AppError } from '@/utils/AppError'
 import { Request, Response, NextFunction } from 'express'
 
 class TablesSessionsController {
+    async list(request: Request, response: Response, next: NextFunction) {
+        try {
+            const tableId = idQueryParamSchema.parse(request.query.table_id)
+
+            let query = knex<TTablesSessions>('tables_sessions')
+                .select('*')
+                .orderBy('closed_at')
+
+            if (tableId) {
+                query = query.where('table_id', tableId)
+            }
+
+            const session = await query
+
+            if (!session.length) {
+                throw new AppError('session not found', 404)
+            }
+
+            return response.json({ session })
+        } catch (error) {
+            next(error)
+        }
+    }
+
     async create(request: Request, response: Response, next: NextFunction) {
         try {
             const tableId = idBodySchema.parse(request.body.table_id)
