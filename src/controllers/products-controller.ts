@@ -41,22 +41,20 @@ class ProductsController {
             const id = idSchema.parse(request.params.id)
             const { name, price } = updateProductSchema.parse(request.body)
 
-            await knex<ProductsTable>('products')
-                .update({ name, price, updated_at: knex.fn.now() })
-                .where({ id })
-
-            const updatedProduct = await knex<ProductsTable>('products')
-                .select()
+            const product = await knex<ProductsTable>('products')
                 .where({ id })
                 .first()
 
-            if (!updatedProduct) {
-                throw new AppError('product not found', 404)
+            if (!product) {
+                throw new AppError('Product not found', 404)
             }
 
-            return response.json({
-                product: updatedProduct,
-            })
+            const [updatedProduct] = await knex<ProductsTable>('products')
+                .where({ id })
+                .update({ name, price, updated_at: knex.fn.now() })
+                .returning('*')
+
+            return response.json({ product: updatedProduct })
         } catch (error) {
             next(error)
         }
