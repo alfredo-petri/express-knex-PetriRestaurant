@@ -9,7 +9,7 @@ class ProductsController {
         try {
             const { name } = request.query
 
-            const products = await knex<ProductsTable>('products')
+            const products = await knex<TProducts>('products')
                 .select('id', 'name', 'price')
                 .whereLike('name', `%${name ?? ''}%`)
                 .orderBy('name')
@@ -28,7 +28,7 @@ class ProductsController {
         try {
             const { name, price } = createProductSchema.parse(request.body)
 
-            await knex<ProductsTable>('products').insert({ name, price })
+            await knex<TProducts>('products').insert({ name, price })
 
             return response.status(201).json()
         } catch (error) {
@@ -41,7 +41,7 @@ class ProductsController {
             const id = idSchema.parse(request.params.id)
             const { name, price } = updateProductSchema.parse(request.body)
 
-            const product = await knex<ProductsTable>('products')
+            const product = await knex<TProducts>('products')
                 .where({ id })
                 .first()
 
@@ -49,7 +49,7 @@ class ProductsController {
                 throw new AppError('Product not found', 404)
             }
 
-            const [updatedProduct] = await knex<ProductsTable>('products')
+            const [updatedProduct] = await knex<TProducts>('products')
                 .where({ id })
                 .update({ name, price, updated_at: knex.fn.now() })
                 .returning('*')
@@ -64,7 +64,7 @@ class ProductsController {
         try {
             const id = idSchema.parse(request.params.id)
 
-            const product = await knex<ProductsTable>('products')
+            const product = await knex<TProducts>('products')
                 .select()
                 .where({ id })
 
@@ -72,7 +72,7 @@ class ProductsController {
                 throw new AppError('product not found', 404)
             }
 
-            await knex<ProductsTable>('products').delete().where({ id })
+            await knex<TProducts>('products').delete().where({ id })
 
             return response.json({ message: 'product deleted' })
         } catch (error) {

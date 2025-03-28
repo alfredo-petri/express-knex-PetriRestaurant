@@ -1,4 +1,4 @@
-interface ProductsTable {
+type TProducts = {
     id: number
     name: string
     price: number
