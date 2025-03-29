@@ -1,21 +1,26 @@
+import {
+    greaterThanErrorMessage,
+    invalidTypeErrorMessage,
+    minStringErrorMessage,
+} from '@/utils/validation-errors'
 import { z } from 'zod'
 
 export const updateProductSchema = z.object({
     name: z
         .string({
-            invalid_type_error: 'name value must be string type',
+            invalid_type_error: invalidTypeErrorMessage('name', 'string'),
         })
         .trim()
         .min(2, {
-            message: 'name value must be at least 2 characters',
+            message: minStringErrorMessage('name', 2),
         })
         .optional(),
     price: z
         .number({
-            invalid_type_error: 'price value must be a number',
+            invalid_type_error: invalidTypeErrorMessage('price', 'number'),
         })
         .gt(0, {
-            message: 'price must be greater than 0',
+            message: greaterThanErrorMessage('price', 0),
         })
         .optional(),
 })
