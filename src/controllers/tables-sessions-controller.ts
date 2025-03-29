@@ -23,7 +23,7 @@ class TablesSessionsController {
             const session = await query
 
             if (!session.length) {
-                throw new AppError('session not found', 404)
+                throw new AppError('table session not found', 404)
             }
 
             return response.json({ session })
@@ -41,7 +41,7 @@ class TablesSessionsController {
                 .where('id', tableId)
 
             if (!isTable.length) {
-                throw new AppError('table not found', 404)
+                throw new AppError('table session not found', 404)
             }
 
             const isBusyTable = await knex<TTablesSessions>('tables_sessions')
@@ -50,7 +50,7 @@ class TablesSessionsController {
                 .first()
 
             if (isBusyTable && !isBusyTable.closed_at) {
-                throw new AppError('the table is already in use', 409)
+                throw new AppError('the table session is already in use', 409)
             }
 
             const session = await knex<TTablesSessions>('tables_sessions')
@@ -85,7 +85,7 @@ class TablesSessionsController {
             }
 
             if (session.closed_at) {
-                throw new AppError('table session is already closed')
+                throw new AppError('table session is already closed', 209)
             }
 
             await knex<TTablesSessions>('tables_sessions')
@@ -95,7 +95,7 @@ class TablesSessionsController {
                 .where({ id: session.id })
 
             return response.status(200).json({
-                message: `table ${table?.table_number} closed successfully`,
+                message: `table session closed successfully`,
             })
         } catch (error) {
             next(error)
