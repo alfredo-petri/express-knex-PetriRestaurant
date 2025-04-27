@@ -11,14 +11,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/alfredo-petri/api-restaurante.git"
+        "url": "https://github.com/alfredo-petri/express-knex-PetriRestaurant"
     },
     "author": "Alfredo Augusto Petri",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/alfredo-petri/api-restaurante/issues"
+        "url": "https://github.com/alfredo-petri/express-knex-PetriRestaurant/issues"
     },
-    "homepage": "https://github.com/alfredo-petri/api-restaurante#readme",
+    "homepage": "https://github.com/alfredo-petri/express-knex-PetriRestaurant",
     "dependencies": {
         "express": "^4.19.2",
         "knex": "^3.1.0",
