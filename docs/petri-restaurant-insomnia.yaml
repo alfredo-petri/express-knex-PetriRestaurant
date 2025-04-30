@@ -17,7 +17,7 @@ collection:
         meta:
           id: req_02bf2cc27fd94812a0e860ed4a20a412
           created: 1745865068666
-          modified: 1746007737119
+          modified: 1746009041198
           isPrivate: false
           sortKey: -1745865068666
         method: POST
@@ -25,8 +25,8 @@ collection:
           mimeType: application/json
           text: |-
             {
-            	"name": "sopa de tomate",
-            	"price": 25.8
+            	"name": "Penne all Arrabbiata",
+            	"price": 25
             }
         headers:
           - name: Content-Type
@@ -66,17 +66,18 @@ collection:
         meta:
           id: req_cb37274a47e24e3c98353dd88dbccd59
           created: 1746007657532
-          modified: 1746008457276
+          modified: 1746009103121
           isPrivate: false
           sortKey: -1744730519710
         method: PATCH
         body:
           mimeType: application/json
-          text: |-
+          text: |+
             {
-            	"name": "talharim ao sugo",
-            	"price": 25
+            	"name": "Caprese",
+            	"price": 14
             }
+
         headers:
           - name: Content-Type
             value: application/json
