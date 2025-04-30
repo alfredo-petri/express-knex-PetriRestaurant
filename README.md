@@ -20,6 +20,7 @@ PetriRestaurant is a lightweight backend API built with Node.js and Express.js, 
 
 # Project Setup Guide
 
+
 ## 📋 Requirements
 Before running this project, make sure you have installed:
 
@@ -58,6 +59,30 @@ npm run create-populated-database
 npm run dev
 ```
 
+---
+
+## 📚 API Documentation
+
+This project includes interactive API documentation powered by Swagger UI.
+
+Once the server is running, you can access it at:
+
+> [http://localhost:3333/docs](http://localhost:3333/docs)
+
+
+You can find it defined on [docs/openapi.yaml](https://github.com/alfredo-petri/express-knex-PetriRestaurant/blob/main/docs/openapi.yaml) in the GitHub repository.
+
+💡 Full interactive API documentation available at `/docs`
+
+### 🔌 Insomnia Collection
+
+You can also test all API routes using [Insomnia](https://insomnia.rest/).  
+
+Import the pre-configured request collection:
+
+> [`docs/petri-restaurant-insomnia.json`](https://github.com/alfredo-petri/express-knex-PetriRestaurant/blob/main/docs/petri-restaurant-insomnia.json)
+
+
 ## API Endpoints Overview (Basic)
 
 | **Endpoint** | **Description** |
@@ -67,12 +92,13 @@ npm run dev
 | /tables-sessions | Manage table sessions |
 | /orders | Manage orders |
 
-💡 Full API documentation coming soon!
+---
 
 ## License
 
 This project is open source and available under the MIT License.
 
+---
 ## 🤝 Contributing
 
 Pull requests are welcome! For major changes, please [open an issue](https://github.com/alfredo-petri/express-knex-PetriRestaurant/issues) first to discuss what you would like to change.
