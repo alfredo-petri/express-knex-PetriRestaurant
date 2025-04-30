@@ -1,0 +1,150 @@
+openapi: 3.0.0
+info:
+  title: PetriRestaurant API
+  description: REST API to manage products, orders, tables, and sessions for a restaurant.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3333
+    description: Local development server
+
+paths:
+  /products:
+    get:
+      summary: List all products
+      responses:
+        '200':
+          description: A list of products
+    post:
+      summary: Create a new product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductInput'
+      responses:
+        '201':
+          description: Product created
+
+  /products/{id}:
+    patch:
+      summary: Update a product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductInput'
+      responses:
+        '200':
+          description: Product updated
+    delete:
+      summary: Delete a product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '204':
+          description: Product deleted
+
+  /orders:
+    get:
+      summary: List all orders
+      responses:
+        '200':
+          description: A list of orders
+    post:
+      summary: Create a new order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderInput'
+      responses:
+        '201':
+          description: Order created
+
+  /tables:
+    get:
+      summary: List all tables
+      responses:
+        '200':
+          description: A list of tables
+
+  /tables-sessions:
+    get:
+      summary: List all table sessions
+      responses:
+        '200':
+          description: A list of sessions
+    post:
+      summary: Create a table session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SessionInput'
+      responses:
+        '201':
+          description: Session created
+    patch:
+      summary: Update a table session
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SessionInput'
+      responses:
+        '200':
+          description: Session updated
+
+components:
+  schemas:
+    ProductInput:
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: number
+        description:
+          type: string
+        category:
+          type: string
+      required: [name, price]
+
+    OrderInput:
+      type: object
+      properties:
+        tableId:
+          type: string
+        items:
+          type: array
+          items:
+            type: string
+      required: [tableId, items]
+
+    SessionInput:
+      type: object
+      properties:
+        tableId:
+          type: string
+        status:
+          type: string
+      required: [tableId]
