@@ -11,11 +11,16 @@ servers:
 paths:
   /products:
     get:
+      tags: 
+        - Products
       summary: List all products
       responses:
         '200':
           description: A list of products
+
     post:
+      tags:
+        - Products
       summary: Create a new product
       requestBody:
         required: true
